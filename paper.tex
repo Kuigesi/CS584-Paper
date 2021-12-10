@@ -204,9 +204,25 @@ The analysis is shown below.\par
 \par In this section we introduce a more advanced approximation algorithm designed by \cite{steinberg1997strip}. Instead of heuristically packing every rectangle and output the height as result, Steinberg gave a more specific bound on the height $\hat{h}$ of the bin, with which a valid packing can be found easily. This is guaranteed by the following theorem.
 \paragraph{Steinberg's Theorem} Suppose that $w_M=\max_{1\leq i\leq n}w_i$, $h_M=\max_{1\leq i\leq n}h_i$, $a_i=w_ih_i$, and $A=\sum_{i=1}^{n}$. If the following inequalities hold,
 \begin{equation}
-	w_M\leq w, h_M\leq h, 2A\leq wh-(2w_M-w)_+(2h_M-h)+
+	w_M\leq w, h_M\leq h, 2A\leq wh-(2w_M-w)_+(2h_M-h)+ 
+	\label{cbase}
 \end{equation}
-then it is possible to pack the rectangles $R_1, R_2, \ldots, R_n$ into the rectangle $Q$ of size $w\times h$ by an efficient algorithm $M$\cite{steinberg1997strip}. The plus footnote returns the rectified linear value by $x_+=\max(x,0)$, which is a non-negative term.
+then it is possible to pack the rectangles $R_1, R_2, \ldots, R_n$ into the bin $Q$ of size $w\times h$ by an efficient algorithm $M$\cite{steinberg1997strip}. The plus footnote returns the rectified linear value by $x_+=\max(x,0)$, which is a non-negative term.
+\par Intuitively, inequalities \ref{cbase} states that the problem of packing the rectangles would be easy when the total area of $R_1$ to $R_n$ compared to the bin is not too big. This is consistent with our observation that when the bin is fairly large, simply sequentially packing rectangles would suffice.
+\paragraph{Steinberg's algorithm for 2D packing} Based on the theorem, Steinberg gave a straight-forward algorithm to answer 2D packing problem. On input $R_1, R_2, \ldots, R_n$, the minimum $\hat{h}$ such that inequalities \ref{cbase} are satisfied with respect to bin $\hat{Q}$ of size $1\times \hat{h}$ is calculated as output. By substitution, the closed form representation of $\hat{h}$ is given by
+\begin{equation}
+	\hat{h}=\inf\{h:h_M\leq h \wedge 2A\leq h-(2w_M-1)_+(2h_M-h)_+\}
+\end{equation}
+It is easy to check that
+\begin{equation}
+	h=\max\{h_M, 2A+(2-\frac{1}{w_M})_+(h_M-A)\}
+\end{equation}
+which can be further relaxed to
+\begin{equation}
+	\hat{h}\leq A+\max(h_M, A)\leq OPT(L)+OPT(L)=2OPT(L)
+\end{equation}
+This gives an absolute performance bound of 2, which is a great improvement from the asymptotic performance bounds by former heuristic methods.
+\paragraph{Recursive construction for $M$} Now we turn to the construction for the core algorithm $M$ for the correctness of the algorithm above.
 \bibliographystyle{acm}
 \bibliography{paper}
 \end{document}
