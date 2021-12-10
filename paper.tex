@@ -132,7 +132,7 @@
 %% The abstract is a short summary of the work to be presented in the
 %% article.
 \begin{abstract}
-  2D Packing (Strip Packing) problem is a 2-dimensional geometric optimization problem which a collection of rectangles are packed into a unit-width bin while the packing height is minimized. In this paper, we study a series of approximation algorithms for 2D Packing Problem and analyze their performances. First we study two intuitive approximation algorithms designed by Coffman with approximation bounds of 3 and 2.7. We further investigate a more advanced algorithm designed by Steinberg that has an approximation bound of 2. Some future investigation directions for improving performance are given in the end.
+  2D Packing (Strip Packing) problem is a 2-dimensional geometric optimization problem which a collection of rectangles are packed into a unit-width bin while the packing height is minimized. In this paper, we study a series of approximation algorithms for 2D Packing Problem and analyze their performances. First we study two intuitive approximation algorithms designed by Coffman with approximation bounds of 3 and 2.7. We further investigate a more advanced algorithm designed by Steinberg that has an approximation bound of 2. Finally, we share some thoughts and future investigation directions for packing.
 \end{abstract}
 \keywords{Approximation Algorithm, 2D packing, Strip Packing}
 
@@ -290,7 +290,13 @@ are just placed in the left bottom side with $_*[R_1]=_*Q$ and $_*[R_i]=^*[R_{i-
 where $Z=\sum_{i=1}^{m}a_i$. The two sub-problems are given by $(Q^\prime,L^\prime)$ and $(Q^{\prime\prime},L^{\prime\prime})$, where the height for $Q^\prime$ and $Q^{\prime\prime}$ are still $h$, and $L^\prime=\{R_1,R_2,\ldots,R_m\}$ and $L^\prime\prime=\{R_{m+1},R_{m+2},\ldots, R_n\}$. Both problems are shown to still satisfy inequalities \ref{cbase}.
 \par From all the construction for all procedures, we can construct $M$ which on every input instances $(Q,L)$ selects the appropriate Procedure $P_\mu$ and either stop if it is already solved, or applied to the sub-problems it generated. By storing three presorted linked lists corresponding to decreasing order of width, height and area, the placement of rectangles for each phase can be implemented efficiently. By induction, the running time of $M$ is in $O(\frac{n\log^2 n}{\log\log n})$, which is almost linear to input size.
 \section{Conclusion}
-In the paper, we give the formal definition for the problem of 2D packing.
+\par In this paper, we give the formal definition for the problem of 2D packing and analyze the intrinsic difficulty in giving a deterministic solution in polynomial time. We then introduce the common notations and concepts of approximation algorithms to attack this problem. Two early algorithms, NFDH and FFDH which approximates the optimal solution by stacking rectangles heuristically are introduced and their performances bounds are calculated. We finally study a more advanced algorithm on 2D packing which gives a feasible height that allows for efficient solution to packing in the first place. The idea is further used in other works related to higher dimensional packing \cite{approx3okp}.
+\par Based on our study so far, we plan to look into the following problems in the future:
+\begin{itemize}
+	\item (Extraordinary) It has been shown that there exists no polynomial time approximation algorithm for 2D packing with a ratio smaller than $1.5$ unless $P=NP$. People have reached $\frac{5}{3}+\epsilon$ so far. How close to $1.5$ can we achieve on this problem?
+	\item (Middle) Approximation algorithms for a natural extension of this problem, 3D packing, generally has a higher approximation ratio than this one. Simply applying NFDH and FFDH techniques can lead to arbitrarily big approximation ratios. Is there an intrinsic difference in difficulty of packing with respect to dimension? If so, why is it happening? How quick does this difficulty change?
+	\item (Short-term) The Steinberg's method actually does not pack the items when giving the prediction. If some packing exercise on input is allowed, can we reach a better bound? If $M$ is allowed more time, can we do any better?
+\end{itemize}
 \bibliographystyle{acm}
 \bibliography{paper}
 \end{document}
