@@ -289,6 +289,9 @@ are just placed in the left bottom side with $_*[R_1]=_*Q$ and $_*[R_i]=^*[R_{i-
 	w^\prime=\max(\frac{w}{2},\frac{2Z}{w}), w^{\prime\prime}=\min(\frac{w}{2},w-\frac{2Z}{w})
 \end{equation}
 where $Z=\sum_{i=1}^{m}a_i$. The two sub-problems are given by $(Q^\prime,L^\prime)$ and $(Q^{\prime\prime},L^{\prime\prime})$, where the height for $Q^\prime$ and $Q^{\prime\prime}$ are still $h$, and $L^\prime=\{R_1,R_2,\ldots,R_m\}$ and $L^\prime\prime=\{R_{m+1},R_{m+2},\ldots, R_n\}$. Both problems are shown to still satisfy inequalities \ref{cbase}.
+\par From all the construction for all procedures, we can construct $M$ which on every input instances $(Q,L)$ selects the appropriate Procedure $P_\mu$ and either stop if it is already solved, or applied to the sub-problems it generated. By storing three presorted linked lists corresponding to decreasing order of width, height and area, the placement of rectangles for each phase can be implemented efficiently. By induction, the running time of $M$ is in $O(\frac{n\log^2 n}{\log\log n})$, which is almost linear to input size.
+\section{Conclusion}
+In the paper, we give the formal definition for the problem of 2D packing.
 \bibliographystyle{acm}
 \bibliography{paper}
 \end{document}
