@@ -1,18 +1,21 @@
-all:
-	mkdir -p build
-	for texfile in *.tex; do \
-		pdffile=$${texfile%.tex}.pdf; \
-		${MAKE} $$pdffile; \
-	done
+SHELL=/bin/sh
+THESIS=paper
 
-%.pdf:  %.tex
-	cd $(dir $@) && pdflatex-dev --output-directory=build $(notdir $<)
-	- cd $(dir $@) && bibtex --output-directory=build $(notdir $(basename $<))
-	cd $(dir $@) && pdflatex-dev --output-directory=build $(notdir $<)
-	cd $(dir $@) && pdflatex-dev --output-directory=build $(notdir $<)
-	while ( grep -q '^LaTeX Warning: Label(s) may have changed' build/$(basename $<).log) \
-	  do cd $(dir $@) && pdflatex-dev --output-directory=build $(notdir $<); done
+.SUFFIXES:
+.SUFFIXES: .bib .pdf .tex
 
+all: $(THESIS).pdf
+
+$(THESIS).pdf: $(THESIS).bbl $(THESIS).tex
+	pdflatex $(THESIS).tex -draftmode
+	pdflatex $(THESIS).tex
+
+$(THESIS).bbl: $(THESIS).aux
+	bibtex $(THESIS).aux
+
+$(THESIS).aux: $(THESIS).bib
+	pdflatex $(THESIS).tex -draftmode
+	pdflatex $(THESIS).tex -draftmode
 
 
 clean:
