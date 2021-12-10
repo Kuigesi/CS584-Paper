@@ -269,12 +269,26 @@ This gives an absolute performance bound of 2, which is a great improvement from
 (C1) $w_M\geq \frac{w}{2}$; \\
 (C2) $w_M\leq \frac{w}{2}, h_M\leq\frac{h}{2}$, and there exists two different indices $i$ and $k$ such that $w_i\geq \frac{w}{4}, w_k\geq\frac{w}{4}, h_i\geq\frac{w}{4}, h_k\geq\frac{h}{4}, 2(A-a_i-a_k)\leq (w-\max(w_i, w_k))h$; \\
 (C3) $w_M\leq\frac{w}{2}, h_M\leq\frac{h}{2}, n>1$, and for some index $m\in[1,n)$ we have $A-\frac{1}{4}wh\leq\sum_{i=1}^{m}s_i\leq\frac{3}{8}wh$ and $w_{m+1}\leq\frac{w}{4}$. 
-\par By switching the positions of $w_M$ with $h_M$ and $w$ with $h$, the above conditions can be further expanded to $C_{-1}, C_{-2}, C_{-3}$ which allows for the rotation of any rectangles. It is shown that if input instance $(Q,L)$ satisfies inequalities \ref{cbase}, then it must satisfy one of the conditions $C_\mu$ with $\mu\in[-3,3]$ \cite{steinberg1997strip}.
+\par Since the height and weight components in $C_1$ to $C_3$ play a non-symmetrical role, we can interchange the positions of $w_M$ with $h_M$ and $w$ with $h$ to obtain transposed procedures $P_{-1}, P_{-2}$ and $P_{-3}$ which are applied to transposed classes $C_{-1}, C_{-2}, C_{-3}$, thus allowing for the rotation of input rectangles. It is shown that if input instance $(Q,L)$ satisfies inequalities \ref{cbase}, then it must satisfy one of the conditions $C_\mu$ with $\mu\in[-3,3]$ \cite{steinberg1997strip}.
 \par For input instances satisfying C0 apart from inequalities \ref{cbase}, P0 first places rectangle $R_i$ so that $_*[R_i]=_*Q$, where $_*Q$ denotes the left bottom corner of bin $Q$. If $n=1$, then $(Q,L)$ is solved; otherwise, P0 forms a new problem $(Q^\prime, L^\prime)$, where new bin $Q^\prime$ is defined by
 \begin{equation}
 	_*[Q^\prime]=[R_i]_*, [Q^\prime]^*=Q*
 \end{equation}
-where $[R_i]_*$ denote the right bottom corner for $R_i$ and $Q^*$ denotes the upper right corner for $Q$. $L^\prime$ is obtained by removing $R_i$ from $L$. This input 
+where $[R_i]_*$ denote the right bottom corner for $R_i$ and $Q^*$ denotes the upper right corner for $Q$. $L^\prime$ is obtained by removing $R_i$ from $L$. The new problem $(Q^\prime, L^\prime)$ can be verified to still satisfy inequalities \ref{cbase}.
+\par For input instances satisfying C1, P1 first sort all rectangles by their width and find the maximal index $m$ such that $w_m\geq\frac{w}{2}$ and $w_m<\frac{w}{2}$. The pieces $R_1$ to $R_m$
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=\linewidth]{steinC1}
+	\caption{Illustration for packing in Procedure P1}
+	\label{steinC1Illus}
+\end{figure}
+are just placed in the left bottom side with $_*[R_1]=_*Q$ and $_*[R_i]=^*[R_{i-1}]$ for $i\geq 2$. If $m=n$, then input instance is solved. Otherwise, P1 sorts the remaining rectangles by height and place them in the similar symmetric fashion if the largest height in the remaining pieces exceeds the uncovered height $h^\prime$ as shown in Fig. \ref{steinC1Illus}. If not exceeding, then the top region can already constitutes a sub-problem $(Q^\prime, L^\prime)$ with $_*[Q^]=^*[R_m]$ and $[Q^\prime]^*=Q^*$ and $L^\prime=L-\{R_1, R_2, \ldots, R_m\}$, which can be shown to satisfy inequalities \ref{cbase}. If exceeded, then the remaining region and rectangles makes up a new problem, which is also shown to satisfy inequalities \ref{cbase}\cite{steinberg1997strip}.
+\par For input instances satisfying C2, P2 places rectangles $R_i$ and $R_k$ at the bottom left so that $_*[R_i]=_*[Q]$ and $_*[R_k]=^*[R_i]$ just like first phase of P1. If $n=2$, then the problem is solved; otherwise, P2 forms a new problem $(Q^\prime, L^\prime)$ where $_*[Q^\prime]=[R_i]_*$, $[Q^\prime]=Q^*$ and $L^\prime=L-\{R_i, R_k\}$.
+\par For input instances satisfying C3, P3 cut $Q$ into two rectangles $Q^\prime$ and $Q^{\prime\prime}$ with width $w^\prime$ and $w^{\prime\prime}$ given as follows:
+\begin{equation}
+	w^\prime=\max(\frac{w}{2},\frac{2Z}{w}), w^{\prime\prime}=\min(\frac{w}{2},w-\frac{2Z}{w})
+\end{equation}
+where $Z=\sum_{i=1}^{m}a_i$. The two sub-problems are given by $(Q^\prime,L^\prime)$ and $(Q^{\prime\prime},L^{\prime\prime})$, where the height for $Q^\prime$ and $Q^{\prime\prime}$ are still $h$, and $L^\prime=\{R_1,R_2,\ldots,R_m\}$ and $L^\prime\prime=\{R_{m+1},R_{m+2},\ldots, R_n\}$. Both problems are shown to still satisfy inequalities \ref{cbase}.
 \bibliographystyle{acm}
 \bibliography{paper}
 \end{document}
