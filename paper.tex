@@ -265,10 +265,16 @@ which can be further relaxed to
 This gives an absolute performance bound of 2, which is a great improvement from the asymptotic performance bounds by former heuristic methods.
 \paragraph{Recursive construction for $M$} Now we turn to the construction for the core algorithm $M$ for the correctness of the algorithm above. Steinberg designed several mutually disjoint reduction procedures that are applied when specific geometric properties are observed in input instances. Specifically, the input is categorized to fall into one of four classes $C_0, C_1, C_2, C_3$, where corresponding procedures $P_0,P_1, P_2,P_3$ would either solve $L$ or reduce to problems of smaller sizes.
 \par The four classes are designed as below.\\
-(C0) $w_M\leq \frac{w}{2}, h_M\leq\frac{h}{2},$ and for some index $i\in[1,n]$ we have $A-\frac{1}{4}wh\leq s_i$ \\
-(C1) $w_M\geq \frac{w}{2}$ \\
-(C2) $w_M\leq \frac{w}{2}, h_M\leq\frac{h}{2}$, and there exists two different indices $i$ and $k$ such that $w_i\geq \frac{w}{4}, w_k\geq\frac{w}{4}, h_i\geq\frac{w}{4}, h_k\geq\frac{h}{4}, 2(A-a_i-a_k)\leq (w-\max(w_i, w_k))h$ \\
-(C3) $w_M\leq\frac{w}{2}, h_M\leq\frac{h}{2}, n>1$, and for some index $m\in[1,n)$ we have $A-\frac{1}{4}wh\leq\sum_{i=1}^{m}s_i\leq\frac{3}{8}wh$ and $w_{m+1}\leq\frac{w}{4}$
+(C0) $w_M\leq \frac{w}{2}, h_M\leq\frac{h}{2},$ and for some index $i\in[1,n]$ we have $A-\frac{1}{4}wh\leq a_i$; \\
+(C1) $w_M\geq \frac{w}{2}$; \\
+(C2) $w_M\leq \frac{w}{2}, h_M\leq\frac{h}{2}$, and there exists two different indices $i$ and $k$ such that $w_i\geq \frac{w}{4}, w_k\geq\frac{w}{4}, h_i\geq\frac{w}{4}, h_k\geq\frac{h}{4}, 2(A-a_i-a_k)\leq (w-\max(w_i, w_k))h$; \\
+(C3) $w_M\leq\frac{w}{2}, h_M\leq\frac{h}{2}, n>1$, and for some index $m\in[1,n)$ we have $A-\frac{1}{4}wh\leq\sum_{i=1}^{m}s_i\leq\frac{3}{8}wh$ and $w_{m+1}\leq\frac{w}{4}$. 
+\par By switching the positions of $w_M$ with $h_M$ and $w$ with $h$, the above conditions can be further expanded to $C_{-1}, C_{-2}, C_{-3}$ which allows for the rotation of any rectangles. It is shown that if input instance $(Q,L)$ satisfies inequalities \ref{cbase}, then it must satisfy one of the conditions $C_\mu$ with $\mu\in[-3,3]$ \cite{steinberg1997strip}.
+\par For input instances satisfying C0 apart from inequalities \ref{cbase}, P0 first places rectangle $R_i$ so that $_*[R_i]=_*Q$, where $_*Q$ denotes the left bottom corner of bin $Q$. If $n=1$, then $(Q,L)$ is solved; otherwise, P0 forms a new problem $(Q^\prime, L^\prime)$, where new bin $Q^\prime$ is defined by
+\begin{equation}
+	_*[Q^\prime]=[R_i]_*, [Q^\prime]^*=Q*
+\end{equation}
+where $[R_i]_*$ denote the right bottom corner for $R_i$ and $Q^*$ denotes the upper right corner for $Q$. $L^\prime$ is obtained by removing $R_i$ from $L$. This input 
 \bibliographystyle{acm}
 \bibliography{paper}
 \end{document}
