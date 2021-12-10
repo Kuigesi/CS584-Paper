@@ -190,6 +190,14 @@ $$NFDH(L) \leq 2*OPT(L) + h_{max}$$
 The analysis is shown below.\par
 
 \subsection{FFDH (First-Fit Decreasing-Height)}
+
+\section{Steinberg's Algorithm}
+\par In this section we introduce a more advanced approximation algorithm designed by \cite{steinberg1997strip}. Instead of heuristically packing every rectangle and output the height as result, Steinberg gave a more specific bound on the height $\hat{h}$ of the bin, with which a valid packing can be found easily. This is guaranteed by the following theorem.
+\paragraph{Steinberg's Theorem} If the following inequalities hold
+\begin{eqnarray}
+	a_M &= \max_{1\leq i\leq n} a_i \\
+	b_M &= \max_{1\leq i\leq n} b_i \\
+\end{eqnarray}
 \bibliographystyle{acm}
 \bibliography{paper}
 \end{document}
