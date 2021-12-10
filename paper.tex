@@ -263,7 +263,12 @@ which can be further relaxed to
 	\hat{h}\leq A+\max(h_M, A)\leq OPT(L)+OPT(L)=2OPT(L)
 \end{equation}
 This gives an absolute performance bound of 2, which is a great improvement from the asymptotic performance bounds by former heuristic methods.
-\paragraph{Recursive construction for $M$} Now we turn to the construction for the core algorithm $M$ for the correctness of the algorithm above.
+\paragraph{Recursive construction for $M$} Now we turn to the construction for the core algorithm $M$ for the correctness of the algorithm above. Steinberg designed several mutually disjoint reduction procedures that are applied when specific geometric properties are observed in input instances. Specifically, the input is categorized to fall into one of four classes $C_0, C_1, C_2, C_3$, where corresponding procedures $P_0,P_1, P_2,P_3$ would either solve $L$ or reduce to problems of smaller sizes.
+\par The four classes are designed as below.\\
+(C0) $w_M\leq \frac{w}{2}, h_M\leq\frac{h}{2},$ and for some index $i\in[1,n]$ we have $A-\frac{1}{4}wh\leq s_i$ \\
+(C1) $w_M\geq \frac{w}{2}$ \\
+(C2) $w_M\leq \frac{w}{2}, h_M\leq\frac{h}{2}$, and there exists two different indices $i$ and $k$ such that $w_i\geq \frac{w}{4}, w_k\geq\frac{w}{4}, h_i\geq\frac{w}{4}, h_k\geq\frac{h}{4}, 2(A-a_i-a_k)\leq (w-\max(w_i, w_k))h$ \\
+(C3) $w_M\leq\frac{w}{2}, h_M\leq\frac{h}{2}, n>1$, and for some index $m\in[1,n)$ we have $A-\frac{1}{4}wh\leq\sum_{i=1}^{m}s_i\leq\frac{3}{8}wh$ and $w_{m+1}\leq\frac{w}{4}$
 \bibliographystyle{acm}
 \bibliography{paper}
 \end{document}
