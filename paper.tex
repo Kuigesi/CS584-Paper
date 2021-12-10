@@ -202,11 +202,11 @@ The analysis is shown below.\par
 
 \section{Steinberg's Algorithm}
 \par In this section we introduce a more advanced approximation algorithm designed by \cite{steinberg1997strip}. Instead of heuristically packing every rectangle and output the height as result, Steinberg gave a more specific bound on the height $\hat{h}$ of the bin, with which a valid packing can be found easily. This is guaranteed by the following theorem.
-\paragraph{Steinberg's Theorem} If the following inequalities hold
-\begin{eqnarray}
-	a_M &= \max_{1\leq i\leq n} a_i \\
-	b_M &= \max_{1\leq i\leq n} b_i \\
-\end{eqnarray}
+\paragraph{Steinberg's Theorem} Suppose that $w_M=\max_{1\leq i\leq n}w_i$, $h_M=\max_{1\leq i\leq n}h_i$, $a_i=w_ih_i$, and $A=\sum_{i=1}^{n}$. If the following inequalities hold,
+\begin{equation}
+	w_M\leq w, h_M\leq h, 2A\leq wh-(2w_M-w)_+(2h_M-h)+
+\end{equation}
+then it is possible to pack the rectangles $R_1, R_2, \ldots, R_n$ into the rectangle $Q$ of size $w\times h$ by an efficient algorithm $M$\cite{steinberg1997strip}. The plus footnote returns the rectified linear value by $x_+=\max(x,0)$, which is a non-negative term.
 \bibliographystyle{acm}
 \bibliography{paper}
 \end{document}
